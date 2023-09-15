@@ -1,6 +1,8 @@
 import express from "express"
 import userRouter from "./src/controllers/users.controllers.js"
 import authRouter from "./src/controllers/auth.controllers.js"
+import imagesRouter from "./src/controllers/images.controllers.js"
+import paymentRouter from "./src/controllers/payment.controllers.js"
 import auth from "./src/middlewares/auth.js" 
 import cors from "cors"
 import morgan from "morgan"
@@ -8,16 +10,18 @@ import morgan from "morgan"
 
 const app = express()
 app.use(express.json());
-
-app.use('/user', userRouter)
-app.use('/auth', authRouter)
-
 app.use(morgan('combined'));
 app.use(cors());
 
+app.use('/users', userRouter)
+app.use('/auth', authRouter)
+app.use('/images', imagesRouter)
+app.use('/payment', paymentRouter)
+
+
+
 app.get('/protected', auth, (req, res) => {
-    res.json({ "hello": "world" })
-  })
+    res.json({ "hello": "world" })})
 
 export default app
 
