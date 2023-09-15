@@ -20,11 +20,11 @@ router.post('/', async (req, res) => {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: req.image.title,
-            description: req.image.description,
-            images: [req.image.url]
+            name: req.body.title,
+            description: req.body.description,
+            images: [req.body.url]
           },
-          unit_amount: (req.image.price*100),
+          unit_amount: (req.body.price*100),
         },
         quantity: 1,
       },
